@@ -4,13 +4,26 @@ class Usuarios {
     static rotas(app) { //não quero estanciar, transformar num objeto, apenas usar funções dela
         app.get("/usuarios", (req, res) => {
             const nome = "Julia"
-            if (ValidacoesService.validaNome(nome)) {
-                const usuario = new UsuarioModel("Julia", "julia@email.com", "11994567053")
-                res.send(usuario)
+            const isValid = ValidacoesService.validaNome(nome)
+            
+            if (isValid) {
+                const usuario = new UsuarioModel(nome, "julia@email.com", "11994567053")
+                res.status(200).json({...usuario, verbo: "get"})
             } else {
                 res.status(400).send("Erro")
             }
-            // res.send("rota usuários")
+        })
+
+        app.post("/usuarios", (req, res) => {
+            const nome = "Julia"
+            const isValid = ValidacoesService.validaNome(nome)
+            
+            if (isValid) {
+                const usuario = new UsuarioModel(nome, "julia@email.com", "11994567053")
+                res.status(201).json({...usuario, verbo: "post"}) //status 201: criado
+            } else {
+                res.status(400).send("Erro")
+            }
         })
     }
 }
