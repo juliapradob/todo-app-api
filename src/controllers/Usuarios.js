@@ -18,6 +18,9 @@ class Usuarios {
             const nome = "Julia"
             const isValid = ValidacoesService.validaNome(nome)
             
+            const body = req.body
+            console.log(body)
+
             if (isValid) {
                 const usuario = new UsuarioModel(nome, "julia@email.com", "11994567053")
                 res.status(201).json({...usuario, verbo: "post"}) //status 201: criado

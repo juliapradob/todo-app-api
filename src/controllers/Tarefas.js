@@ -10,6 +10,9 @@ class Tarefas {
         app.post("/tarefas", (req, res) => {
             const tarefa = new TarefaModel("Fazer codewars", "Fazer 135 pontos até o final do módulo 4")
             res.status(201).json({...tarefa, verbo: "post"})
+
+            const body = req.body
+            console.log(body)
         })
     }
 }

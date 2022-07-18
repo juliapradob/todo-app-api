@@ -12,5 +12,7 @@ app.listen(port, () => {
     console.log(`Servidor rodando em http://localhost:${port}`)
 })
 
+app.use(express.json())
+
 Tarefas.rotas(app)
 Usuarios.rotas(app)
