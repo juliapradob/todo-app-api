@@ -8,8 +8,20 @@ class ValidacoesService {
     static validaTelefone9(telefone) {
         return true
     }
-    static isValid(nome, email, telefone) {
+    static usuarioIsValid(nome, email, telefone) {
         return this.validaNome(nome) && this.validaTelefone(telefone) && this.validaEmail(email)
+    }
+
+    static validaTitulo(titulo) {
+        return titulo.length >= 1
+    }
+
+    static validaDescricao(descricao) {
+        return descricao.length >= 2
+    }
+
+    static tarefaIsValid(titulo, descricao) {
+        return this.validaTitulo(titulo) && this.validaDescricao(descricao)
     }
 }
 

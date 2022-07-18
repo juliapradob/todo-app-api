@@ -10,10 +10,9 @@ class Usuarios {
         })
 
         app.post("/usuarios", (req, res) => {
-            const isValid = ValidacoesService.validaNome(req.body.nome)
-            const body = req.body
+            const usuarioIsValid = ValidacoesService.validaNome(req.body.nome)
 
-            if (isValid) {
+            if (usuarioIsValid) {
                 const usuario = new UsuarioModel(...Object.values(req.body))
                 const response = DatabaseMetodos.inserirUsuario(usuario)
                 res.status(201).json(response) //status 201: criado

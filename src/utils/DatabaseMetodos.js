@@ -9,9 +9,18 @@ class DatabaseMetodos {
         return Database.Usuarios
     }
 
+    static listarTodasTarefas() {
+        return Database.Tarefas
+    }
+
     static inserirUsuario(usuario) {
         Database.Usuarios = [...Database.Usuarios, usuario] // ou Database.Usuarios.push(usuario)
         return Database.Usuarios
+    }
+
+    static inserirTarefa(tarefa) {
+        Database.Tarefas = [...Database.Tarefas, tarefa] // ou Database.Tarefas.push(tarefa)
+        return Database.Tarefas
     }
 }
 
