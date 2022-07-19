@@ -22,6 +22,11 @@ class DatabaseMetodos {
         return Database.Usuarios
     }
 
+    /**
+     * 
+     * @param {Object} tarefa 
+     * @returns Object
+     */
     static inserirTarefa(tarefa) {
         Database.Tarefas = [...Database.Tarefas, tarefa] // ou Database.Tarefas.push(tarefa)
         return Database.Tarefas
