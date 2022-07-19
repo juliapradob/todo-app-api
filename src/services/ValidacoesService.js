@@ -23,7 +23,8 @@ class ValidacoesService {
      * @returns boolean
      */
     static validaTelefone9(telefone) {
-        return true
+        const tel = parseInt(telefone)
+        return tel == telefone
     }
 
     /**

@@ -10,7 +10,7 @@ class Usuarios {
         })
 
         app.post("/usuarios", (req, res) => {
-            const usuarioIsValid = ValidacoesService.validaNome(req.body.nome)
+            const usuarioIsValid = ValidacoesService.validaNome(req.body.nome) && ValidacoesService.validaTelefone(req.body.telefone)
 
             if (usuarioIsValid) {
                 const usuario = new UsuarioModel(...Object.values(req.body))
