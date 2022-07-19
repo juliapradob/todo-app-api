@@ -6,7 +6,7 @@ import DatabaseMetodos from "../utils/DatabaseMetodos.js"
 class Tarefas {
     static rotas(app) { //não quero estanciar, transformar num objeto, apenas usar funções dela
         app.get("/tarefas", (req, res) => {
-            const response = DatabaseMetodos.listarTodasTarefas
+            const response = DatabaseMetodos.listarTodasTarefas()
             res.status(200).json(response)
         })
 
