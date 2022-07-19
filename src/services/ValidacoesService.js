@@ -14,7 +14,7 @@ class ValidacoesService {
      * @returns boolean
      */
     static validaEmail(email) {
-        const emailValidado = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\.([a-z]+)?$/i
+        const emailValidado = /^[a-z0-9.]+@[a-z0-9]+.[a-z]+.([a-z]+)?$/i
         return emailValidado.teste(email)
     }
 
