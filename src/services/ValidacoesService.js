@@ -1,6 +1,6 @@
 class ValidacoesService {
     /**
-     * 
+     * Validação do nome do usuário
      * @param {string} nome 
      * @returns boolean
      */
@@ -9,26 +9,27 @@ class ValidacoesService {
     }
 
     /**
-     * 
+     * Validação do email do usuário utilizando regex
      * @param {string} email 
      * @returns boolean
      */
     static validaEmail(email) {
-        return true
+        const emailValidado = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\.([a-z]+)?$/i
+        return emailValidado.teste(email)
     }
 
     /**
-     * 
+     * Validação do telefone do usuário utilizando parseInt
      * @param {string} telefone 
      * @returns boolean
      */
     static validaTelefone9(telefone) {
-        const tel = parseInt(telefone)
-        return tel == telefone
+        const telefoneValidado = parseInt(telefone)
+        return telefoneValidado == telefone
     }
 
     /**
-     * 
+     * Valida todos os dados do usuário de uma vez só
      * @param {string} nome 
      * @param {string} email 
      * @param {string} telefone 
@@ -39,7 +40,7 @@ class ValidacoesService {
     }
 
     /**
-     * 
+     * Valida título da tarefa
      * @param {string} titulo 
      * @returns boolean
      */
@@ -48,7 +49,7 @@ class ValidacoesService {
     }
 
     /**
-     * 
+     * Valida descrição da tarefa
      * @param {string} descricao 
      * @returns boolean
      */
@@ -57,7 +58,7 @@ class ValidacoesService {
     }
 
     /**
-     * 
+     * Valida todos os dados da tarefa
      * @param {string} titulo 
      * @param {string} descricao 
      * @returns boolean

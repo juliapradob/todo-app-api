@@ -1,14 +1,26 @@
 import { Database } from "../infra/Database.js";
 
 class DatabaseMetodos {
+    /**
+     * 
+     * @returns Array
+     */
     static listarTodoOBanco() {
         return Database
     }
 
+    /**
+     * 
+     * @returns Array<Objects>
+     */
     static listarTodosUsuarios() {
         return Database.Usuarios
     }
 
+    /**
+     * 
+     * @returns Array<Objects>
+     */
     static listarTodasTarefas() {
         return Database.Tarefas
     }
