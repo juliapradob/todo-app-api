@@ -12,7 +12,11 @@ class DatabaseMetodos {
     static listarTodasTarefas() {
         return Database.Tarefas
     }
-
+    /**
+     * 
+     * @param {Object} usuario 
+     * @returns Object
+     */
     static inserirUsuario(usuario) {
         Database.Usuarios = [...Database.Usuarios, usuario] // ou Database.Usuarios.push(usuario)
         return Database.Usuarios
