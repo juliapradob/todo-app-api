@@ -1,3 +1,5 @@
+import { Database } from "../infra/Database.js"
+
 class ValidacoesService {
     /**
      * Validação do nome do usuário
@@ -15,7 +17,7 @@ class ValidacoesService {
      */
     static validaEmail(email) {
         const emailValidado = /^[a-z0-9.]+@[a-z0-9]+.[a-z]+.([a-z]+)?$/i
-        return emailValidado.teste(email)
+        return emailValidado.test(email)
     }
 
     /**
@@ -23,7 +25,7 @@ class ValidacoesService {
      * @param {string} telefone 
      * @returns boolean
      */
-    static validaTelefone9(telefone) {
+    static validaTelefone(telefone) {
         const telefoneValidado = parseInt(telefone)
         return telefoneValidado == telefone
     }
@@ -66,6 +68,11 @@ class ValidacoesService {
     static tarefaIsValid(titulo, descricao) {
         return this.validaTitulo(titulo) && this.validaDescricao(descricao)
     }
+
+    static validaIndex(index, database) {
+        return index <= database.length
+    } 
+
 }
 
 export default ValidacoesService

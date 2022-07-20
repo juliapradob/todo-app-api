@@ -9,6 +9,25 @@ class Usuarios {
             res.status(200).json(response)
         })
 
+        app.get("/usuarios/:index", (req, res) => { // :index - parametro da rota que só existe na requisição
+            if (ValidacoesService.validaIndex(req.params.index, Database.Usuarios)) {
+                const usuario = DatabaseMetodos.listarUsuarioPorIndex(req.params.index)
+                res.status(200).json(usuario)
+            } else {
+                res.status(404).json({Error: "Usuário não encontrado"})
+            }
+            
+        })
+
+        app.get("/usuarios/email/:email", (req, res) => {
+            if (ValidacoesService.validaEmail(req.params.email)) {
+                const email = DatabaseMetodos.filtraEmail(req.params.email, Database.Usuarios)
+                res.status(200).json(email)
+            } else {
+                res.status(404).json({Error: "Email não encontrado"})
+            }
+        })
+
         app.post("/usuarios", (req, res) => {
             const usuarioIsValid = ValidacoesService.validaNome(req.body.nome) && ValidacoesService.validaTelefone(req.body.telefone)
 
@@ -17,7 +36,7 @@ class Usuarios {
                 const response = DatabaseMetodos.inserirUsuario(usuario)
                 res.status(201).json(response) //status 201: criado
             } else {
-                res.status(400).send("Erro")
+                res.status(400).json({Error: "Erro"})
             }
         })
     }

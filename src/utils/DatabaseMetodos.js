@@ -19,6 +19,25 @@ class DatabaseMetodos {
 
     /**
      * 
+     * @param {number} index 
+     * @returns Elemento<Array>
+     */
+    static listarUsuarioPorIndex(index) {
+        return Database.Usuarios[index]
+    }
+
+    static listarEmails() {
+        return Database.Usuarios.email
+    }
+
+    static filtraEmail (email, database) {
+        return database.filter((valor) => {
+            return valor.email == email
+        })
+    }
+
+    /**
+     * 
      * @returns Array<Objects>
      */
     static listarTodasTarefas() {
@@ -43,6 +62,8 @@ class DatabaseMetodos {
         Database.Tarefas = [...Database.Tarefas, tarefa] // ou Database.Tarefas.push(tarefa)
         return Database.Tarefas
     }
+
+
 }
 
 export default DatabaseMetodos
