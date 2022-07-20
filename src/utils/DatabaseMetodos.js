@@ -64,6 +64,13 @@ class DatabaseMetodos {
     }
 
 
+    static deletaUsuarioPorId(id) {
+        const usuarios = Database.Usuarios.filter((usuario, index) => {
+            return id != index
+        })
+        Database.Usuarios = usuarios
+        return {id: id, success: "Usuário excluído com sucesso"}
+    }
 }
 
 export default DatabaseMetodos
