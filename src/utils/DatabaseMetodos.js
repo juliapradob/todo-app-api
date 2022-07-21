@@ -103,7 +103,7 @@ class DatabaseMetodos {
     }
 
     static atualizarPorEmail(email, usuario) {
-        const newUsuario = Database.Usuarios.map((emailOriginal, index) => {
+        const newUsuario = Database.Usuarios.map((emailOriginal) => {
             if (emailOriginal.email == email) {
                 return usuario
             }
