@@ -29,7 +29,7 @@ class Usuarios {
         })
 
         app.post("/usuarios", (req, res) => {
-            const usuarioIsValid = ValidacoesService.validaNome(req.body.nome) && ValidacoesService.validaTelefone(req.body.telefone)
+            const usuarioIsValid = ValidacoesService.isValid(...Object.values(req.body))
 
             if (usuarioIsValid) {
                 const usuario = new UsuarioModel(...Object.values(req.body))
@@ -40,6 +40,18 @@ class Usuarios {
             }
         })
 
+        app.put("/usuarios/:id", (req, res) => {
+            const usuarioIsValid = ValidacoesService.isValid(...Object.values(req.body))
+
+            if (usuarioIsValid) {
+                const usuario = new UsuarioModel(...Object.values(req.body))
+                const response = DatabaseMetodos.atualizarPorId(req.params.id, usuario)
+                res.status(201).json(response) 
+            } else {
+                res.status(400).json({Error: "Erro"})
+            }            
+        })
+
         app.delete("/usuarios/:index", (req, res) => {
             if (ValidacoesService.validaIndex(req.params.index, Database.Usuarios)) {
                 const usuario = DatabaseMetodos.deletaUsuarioPorId(req.params.index)
@@ -48,6 +60,8 @@ class Usuarios {
                 res.status(404).json({Error: "Usuário não encontrado"})
             }
         })
+
+        app
     }
 }
 
