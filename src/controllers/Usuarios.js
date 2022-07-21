@@ -41,15 +41,27 @@ class Usuarios {
         })
 
         app.put("/usuarios/:id", (req, res) => {
-            const usuarioIsValid = ValidacoesService.isValid(...Object.values(req.body))
+            const usuarioIsValid = ValidacoesService.usuarioIsValid(...Object.values(req.body))
 
             if (usuarioIsValid) {
                 const usuario = new UsuarioModel(...Object.values(req.body))
                 const response = DatabaseMetodos.atualizarPorId(req.params.id, usuario)
                 res.status(201).json(response) 
             } else {
-                res.status(400).json({Error: "Erro"})
+                res.status(400).json({Error: "Usuário não foi atualizado"})
             }            
+        })
+
+        app.put("/usuarios/email/:email", (req, res) => {
+            const usuarioIsValid = ValidacoesService.usuarioIsValid(...Object.values(req.body))
+
+            if (usuarioIsValid) {
+                const usuario = new UsuarioModel(...Object.values(req.body))
+                const response = DatabaseMetodos.atualizarPorEmail(req.params.email, usuario)
+                res.status(201).json(response)
+            } else {
+                res.status(400).json({Error: "Usuário não foi atualizado"})
+            }
         })
 
         app.delete("/usuarios/:index", (req, res) => {
@@ -65,4 +77,4 @@ class Usuarios {
     }
 }
 
-export default Usuarios //exportar a classe Usuários
+export default Usuarios 

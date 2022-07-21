@@ -101,6 +101,17 @@ class DatabaseMetodos {
         Database.Usuarios = newUsuario
         return {success: "Usuário atualizado", id: id}
     }
+
+    static atualizarPorEmail(email, usuario) {
+        const newUsuario = Database.Usuarios.map((emailOriginal, index) => {
+            if (emailOriginal.email == email) {
+                return usuario
+            }
+            return emailOriginal
+        })
+        Database.Usuarios = newUsuario
+        return {success: "Email atualizado", email: email}
+    }
 }
 
 export default DatabaseMetodos

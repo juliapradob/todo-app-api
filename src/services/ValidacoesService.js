@@ -78,7 +78,6 @@ class ValidacoesService {
     static validaIndex(index, database) {
         return index <= database.length
     } 
-
 }
 
 export default ValidacoesService
