@@ -26,10 +26,20 @@ class DatabaseMetodos {
         return Database.Usuarios[index]
     }
 
+    /**
+     * 
+     * @returns Array<object>
+     */
     static listarEmails() {
         return Database.Usuarios.email
     }
 
+    /**
+     * 
+     * @param {string} email 
+     * @param {array<object>} database 
+     * @returns Array<object>
+     */
     static filtraEmail (email, database) {
         return database.filter((valor) => {
             return valor.email == email
@@ -63,7 +73,11 @@ class DatabaseMetodos {
         return Database.Tarefas
     }
 
-
+    /**
+     * 
+     * @param {number} id 
+     * @returns Array<object>
+     */
     static deletaUsuarioPorId(id) {
         const usuarios = Database.Usuarios.filter((usuario, index) => {
             return id != index

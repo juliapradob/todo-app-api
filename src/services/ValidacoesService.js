@@ -69,6 +69,12 @@ class ValidacoesService {
         return this.validaTitulo(titulo) && this.validaDescricao(descricao)
     }
 
+    /**
+     * 
+     * @param {number} index 
+     * @param {array<object>} database 
+     * @returns boolean
+     */
     static validaIndex(index, database) {
         return index <= database.length
     } 
