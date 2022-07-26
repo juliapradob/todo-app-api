@@ -77,6 +77,20 @@ class DatabaseUsuariosMetodos {
             })
         })
     }
+
+    static async deletaUsuarioPorId(id) {
+        const query = `DELETE FROM usuarios WHERE id = ?`;
+
+        return new Promise((resolve, reject) => {
+            Database.get(query, id, (e, result) => {
+                if(e) {
+                    reject(e.message);
+                } else {
+                    resolve(result)
+                }
+            })
+        })
+    }
 }
 
 export default DatabaseUsuariosMetodos
