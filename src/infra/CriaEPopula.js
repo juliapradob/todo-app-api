@@ -1,4 +1,4 @@
-import DatabaseMetodos from "../utils/DatabaseMetodos.js";
+import DatabaseUsuariosMetodos from "../utils/DatabaseUsuariosMetodos.js";
 
 const usuario = {
     nome: "José das Couves",
@@ -7,10 +7,10 @@ const usuario = {
 };
 
 try {
-    const tabela = await DatabaseMetodos.createTable()
+    const tabela = await DatabaseUsuariosMetodos.createTable()
     console.log(tabela);
 
-    const criada = await DatabaseMetodos.inserirUsuario(usuario)
+    const criada = await DatabaseUsuariosMetodos.inserirUsuario(usuario)
     console.log(criada)
 } catch (e) {
     console.log(e)
