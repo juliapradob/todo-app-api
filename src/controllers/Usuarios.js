@@ -70,9 +70,9 @@ class Usuarios {
             }
         })
 
-        app.delete("/usuarios/:index", (req, res) => {
+        app.delete("/usuarios/:index", async (req, res) => {
             try {
-                const usuario = DatabaseUsuariosMetodos.deletaUsuarioPorId(req.params.index)
+                const usuario = await DatabaseUsuariosMetodos.deletaUsuarioPorId(req.params.index)
                 if (!usuario) {
                     throw new Error("Usuário não encontrado para esse Id")
                 }
