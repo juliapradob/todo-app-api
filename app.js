@@ -10,7 +10,7 @@ const app = express()
 
 app.listen(port, () => {
     console.log(`Servidor rodando em http://localhost:${port}`)
-    DatabaseMetodos.createTable()
+    DatabaseUsuariosMetodos.createTable()
 })
 
 app.use(express.json())
