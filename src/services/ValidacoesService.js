@@ -1,5 +1,3 @@
-import { Database } from "../infra/Database.js"
-
 class ValidacoesService {
     /**
      * Validação do nome do usuário
@@ -68,16 +66,6 @@ class ValidacoesService {
     static tarefaIsValid(titulo, descricao) {
         return this.validaTitulo(titulo) && this.validaDescricao(descricao)
     }
-
-    /**
-     * 
-     * @param {number} index 
-     * @param {array<object>} database 
-     * @returns boolean
-     */
-    static validaIndex(index, database) {
-        return index <= database.length
-    } 
 }
 
 export default ValidacoesService

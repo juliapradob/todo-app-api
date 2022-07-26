@@ -1,6 +1,6 @@
 import Database from "../infra/Database.js"
 import UsuarioModel from "../models/UsuarioModel.js"
-import ValidacoesService from "../services/ValidacoesService.js"
+import ValidacoesUsuario from "../services/ValidacoesUsuario.js"
 import DatabaseMetodos from "../utils/DatabaseMetodos.js"
 class Usuarios {
     static rotas(app) { //não quero estanciar, transformar num objeto, apenas usar funções dela
@@ -29,7 +29,7 @@ class Usuarios {
         })
 
         app.post("/usuarios", async (req, res) => {
-            const usuarioIsValid = ValidacoesService.isValid(...Object.values(req.body))
+            const usuarioIsValid = ValidacoesUsuario.isValid(...Object.values(req.body))
             try {
                 if (usuarioIsValid) {
                     const usuario = new UsuarioModel(...Object.values(req.body))
