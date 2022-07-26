@@ -1,6 +1,6 @@
 import Database from "../infra/Database.js";
 
-class DatabaseMetodos {
+class DatabaseUsuariosMetodos {
     static activePragma(){
         const pragma = "PRAGMA foreign_keys = ON"
 
@@ -79,4 +79,4 @@ class DatabaseMetodos {
     }
 }
 
-export default DatabaseMetodos
+export default DatabaseUsuariosMetodos

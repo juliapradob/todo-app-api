@@ -1,17 +1,17 @@
 import Database from "../infra/Database.js"
 import UsuarioModel from "../models/UsuarioModel.js"
 import ValidacoesUsuario from "../services/ValidacoesUsuario.js"
-import DatabaseMetodos from "../DAO/DatabaseMetodos.js"
+import DatabaseUsuariosMetodos from "../DAO/DatabaseUsuariosMetodos.js"
 class Usuarios {
     static rotas(app) { 
         app.get("/usuarios", async (req, res) => {
-            const response = await DatabaseMetodos.listarTodosUsuarios()
+            const response = await DatabaseUsuariosMetodos.listarTodosUsuarios()
             res.status(200).json(response)
         })
 
         app.get("/usuarios/:id", async (req, res) => { 
             try {
-                const usuario = await DatabaseMetodos.listarUsuarioPorId(req.params.id)
+                const usuario = await DatabaseUsuariosMetodos.listarUsuarioPorId(req.params.id)
                 if (!usuario) {
                     throw new Error("Usuário não encontrado para esse Id")
                 }
@@ -36,7 +36,7 @@ class Usuarios {
             try {
                 if (usuarioIsValid) {
                     const usuario = new UsuarioModel(...Object.values(req.body))
-                    const response = await DatabaseMetodos.inserirUsuario(usuario)
+                    const response = await DatabaseUsuariosMetodos.inserirUsuario(usuario)
                     res.status(201).json(response)
                 } else {
                     throw new Error("Requisição incompleta, revise o corpo da mesma")

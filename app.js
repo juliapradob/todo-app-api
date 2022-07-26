@@ -1,7 +1,7 @@
 import express from "express";
 import * as dotenv from "dotenv";
 import Usuarios from "./src/controllers/Usuarios.js"
-import DatabaseMetodos from "./src/DAO/DatabaseMetodos.js";
+import DatabaseMetodos from "./src/DAO/DatabaseUsuariosMetodos.js";
 
 dotenv.config()
 
