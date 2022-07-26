@@ -5,7 +5,7 @@ import DatabaseMetodos from "../utils/DatabaseMetodos.js"
 class Usuarios {
     static rotas(app) { //não quero estanciar, transformar num objeto, apenas usar funções dela
         app.get("/usuarios", (req, res) => {
-            const response = DatabaseMetodos.listarTodosUsuarios()
+            const response = DatabaseMetodos.buscarTodosUsuarios()
             res.status(200).json(response)
         })
 
@@ -30,14 +30,17 @@ class Usuarios {
 
         app.post("/usuarios", async (req, res) => {
             const usuarioIsValid = ValidacoesService.isValid(...Object.values(req.body))
-
-            if (usuarioIsValid) {
-                const usuario = new UsuarioModel(...Object.values(req.body))
-                const response = await DatabaseMetodos.inserirUsuario(usuario)
-                res.status(201).json(response) //status 201: criado
-            } else {
-                res.status(400).json({Error: "Erro"})
-            }
+            try {
+                if (usuarioIsValid) {
+                    const usuario = new UsuarioModel(...Object.values(req.body))
+                    const response = await DatabaseMetodos.inserirUsuario(usuario)
+                    res.status(201).json(response)
+                } else {
+                    res.status(400).json({Error: "Erro"})
+                }
+            } catch(e) {
+                res.status(400).json(error)
+            }            
         })
 
         app.put("/usuarios/:id", (req, res) => {
