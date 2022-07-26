@@ -71,11 +71,14 @@ class Usuarios {
         })
 
         app.delete("/usuarios/:index", (req, res) => {
-            if (ValidacoesService.validaIndex(req.params.index, Database.Usuarios)) {
-                const usuario = DatabaseMetodos.deletaUsuarioPorId(req.params.index)
+            try {
+                const usuario = DatabaseUsuariosMetodos.deletaUsuarioPorId(req.params.index)
+                if (!usuario) {
+                    throw new Error("Usuário não encontrado para esse Id")
+                }
                 res.status(200).json(usuario)
-            } else {
-                res.status(404).json({Error: "Usuário não encontrado"})
+            } catch (e) {
+                res.status(404).json(e.message)
             }
         })
     }
