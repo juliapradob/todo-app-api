@@ -39,16 +39,32 @@ class DatabaseMetodos{
     static inserirUsuario(usuario){
         const query = `INSERT INTO usuarios (nome, email, telefone) VALUES (?,?,?)`
 
-        const body = Object.values(usuario)
-
         return new Promise((resolve, reject)=>{
-            Database.run(query, [...body], (e)=>{
+            Database.run(query, ...Object.values(usuario), (e)=>{
                 if(e){
                     reject(e.message)
                 } else {
                     resolve({error: false, message: "Usuario cadastrado com sucesso!"})
                 }
             })
+        })
+    }
+
+    static async buscarTodosUsuarios() {
+        const query = `SELECT * FROM usuarios WHERE id > 0`;
+
+        return new Promise((resolve, reject) => {
+            try {
+                Database.all(query, (e, row) => {
+                    if(e) {
+                        reject(e.message);
+                    } else {
+                        resolve(row)
+                    }
+                })
+            } catch(e) {
+                console.log(e)
+            } 
         })
     }
 }

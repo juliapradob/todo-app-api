@@ -1,4 +1,4 @@
-import { Database } from "../infra/Database.js"
+import Database from "../infra/Database.js"
 import UsuarioModel from "../models/UsuarioModel.js"
 import ValidacoesService from "../services/ValidacoesService.js"
 import DatabaseMetodos from "../utils/DatabaseMetodos.js"
@@ -28,12 +28,12 @@ class Usuarios {
             }
         })
 
-        app.post("/usuarios", (req, res) => {
+        app.post("/usuarios", async (req, res) => {
             const usuarioIsValid = ValidacoesService.isValid(...Object.values(req.body))
 
             if (usuarioIsValid) {
                 const usuario = new UsuarioModel(...Object.values(req.body))
-                const response = DatabaseMetodos.inserirUsuario(usuario)
+                const response = await DatabaseMetodos.inserirUsuario(usuario)
                 res.status(201).json(response) //status 201: criado
             } else {
                 res.status(400).json({Error: "Erro"})
