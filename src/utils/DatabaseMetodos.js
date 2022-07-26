@@ -68,7 +68,7 @@ class DatabaseMetodos {
         const query = `SELECT * FROM usuarios WHERE id = ?`;
 
         return new Promise((resolve, reject) => {
-            Database.all(query, id, (e, result) => {
+            Database.get(query, id, (e, result) => {
                 if(e) {
                     reject(e.message);
                 } else {

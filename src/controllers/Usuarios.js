@@ -9,12 +9,15 @@ class Usuarios {
             res.status(200).json(response)
         })
 
-        app.get("/usuarios/:id", (req, res) => { 
-            if (ValidacoesService.validaIndex(req.params.id, Database.Usuarios)) {
-                const usuario = DatabaseMetodos.listarUsuarioPorId(req.params.id)
+        app.get("/usuarios/:id", async (req, res) => { 
+            try {
+                const usuario = await DatabaseMetodos.listarUsuarioPorId(req.params.id)
+                if (!usuario) {
+                    throw new Error("Usuário não encontrado para esse Id")
+                }
                 res.status(200).json(usuario)
-            } else {
-                res.status(404).json({Error: "Usuário não encontrado"})
+            } catch (e) {
+                res.status(404).json(e.message)
             }
             
         })
