@@ -36,10 +36,10 @@ class Usuarios {
                     const response = await DatabaseMetodos.inserirUsuario(usuario)
                     res.status(201).json(response)
                 } else {
-                    res.status(400).json({Error: "Erro"})
+                    throw new Error("Requisição incompleta, revise o corpo da mesma")
                 }
             } catch(e) {
-                res.status(400).json(error)
+                res.status(400).json(e.message)
             }            
         })
 
