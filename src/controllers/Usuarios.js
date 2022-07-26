@@ -1,7 +1,7 @@
 import Database from "../infra/Database.js"
 import UsuarioModel from "../models/UsuarioModel.js"
 import ValidacoesUsuario from "../services/ValidacoesUsuario.js"
-import DatabaseMetodos from "../utils/DatabaseMetodos.js"
+import DatabaseMetodos from "../DAO/DatabaseMetodos.js"
 class Usuarios {
     static rotas(app) { 
         app.get("/usuarios", async (req, res) => {
@@ -78,8 +78,6 @@ class Usuarios {
                 res.status(404).json({Error: "Usuário não encontrado"})
             }
         })
-
-        app
     }
 }
 
