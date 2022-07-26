@@ -1,6 +1,5 @@
 import express from "express";
 import * as dotenv from "dotenv";
-import Tarefas from "./src/controllers/Tarefas.js"
 import Usuarios from "./src/controllers/Usuarios.js"
 
 dotenv.config()
@@ -14,5 +13,4 @@ app.listen(port, () => {
 
 app.use(express.json())
 
-Tarefas.rotas(app)
 Usuarios.rotas(app)
