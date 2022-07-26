@@ -38,34 +38,6 @@ class ValidacoesService {
     static usuarioIsValid(nome, email, telefone) {
         return this.validaNome(nome) && this.validaTelefone(telefone) && this.validaEmail(email)
     }
-
-    /**
-     * Valida título da tarefa
-     * @param {string} titulo 
-     * @returns boolean
-     */
-    static validaTitulo(titulo) {
-        return titulo.length >= 1
-    }
-
-    /**
-     * Valida descrição da tarefa
-     * @param {string} descricao 
-     * @returns boolean
-     */
-    static validaDescricao(descricao) {
-        return descricao.length >= 2
-    }
-
-    /**
-     * Valida todos os dados da tarefa
-     * @param {string} titulo 
-     * @param {string} descricao 
-     * @returns boolean
-     */
-    static tarefaIsValid(titulo, descricao) {
-        return this.validaTitulo(titulo) && this.validaDescricao(descricao)
-    }
 }
 
 export default ValidacoesService

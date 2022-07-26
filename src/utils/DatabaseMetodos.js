@@ -1,6 +1,6 @@
 import Database from "../infra/Database.js";
 
-class DatabaseMetodos{
+class DatabaseMetodos {
     static activePragma(){
         const pragma = "PRAGMA foreign_keys = ON"
 
@@ -50,21 +50,31 @@ class DatabaseMetodos{
         })
     }
 
-    static async buscarTodosUsuarios() {
-        const query = `SELECT * FROM usuarios WHERE id > 0`;
+    static async listarTodosUsuarios() {
+        const query = `SELECT * FROM usuarios`;
 
         return new Promise((resolve, reject) => {
-            try {
-                Database.all(query, (e, row) => {
-                    if(e) {
-                        reject(e.message);
-                    } else {
-                        resolve(row)
-                    }
-                })
-            } catch(e) {
-                console.log(e)
-            } 
+            Database.all(query, (e, result) => {
+                if(e) {
+                    reject(e.message);
+                } else {
+                    resolve(result)
+                }
+            })
+        })
+    }
+
+    static async listarUsuarioPorId(id) {
+        const query = `SELECT * FROM usuarios WHERE id = ?`;
+
+        return new Promise((resolve, reject) => {
+            Database.all(query, id, (e, result) => {
+                if(e) {
+                    reject(e.message);
+                } else {
+                    resolve(result)
+                }
+            })
         })
     }
 }

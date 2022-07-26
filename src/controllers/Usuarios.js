@@ -3,15 +3,15 @@ import UsuarioModel from "../models/UsuarioModel.js"
 import ValidacoesUsuario from "../services/ValidacoesUsuario.js"
 import DatabaseMetodos from "../utils/DatabaseMetodos.js"
 class Usuarios {
-    static rotas(app) { //não quero estanciar, transformar num objeto, apenas usar funções dela
-        app.get("/usuarios", (req, res) => {
-            const response = DatabaseMetodos.buscarTodosUsuarios()
+    static rotas(app) { 
+        app.get("/usuarios", async (req, res) => {
+            const response = await DatabaseMetodos.listarTodosUsuarios()
             res.status(200).json(response)
         })
 
-        app.get("/usuarios/:id", (req, res) => { // :index - parametro da rota que só existe na requisição
+        app.get("/usuarios/:id", (req, res) => { 
             if (ValidacoesService.validaIndex(req.params.id, Database.Usuarios)) {
-                const usuario = DatabaseMetodos.listarUsuarioPorIndex(req.params.id)
+                const usuario = DatabaseMetodos.listarUsuarioPorId(req.params.id)
                 res.status(200).json(usuario)
             } else {
                 res.status(404).json({Error: "Usuário não encontrado"})
@@ -29,7 +29,7 @@ class Usuarios {
         })
 
         app.post("/usuarios", async (req, res) => {
-            const usuarioIsValid = ValidacoesUsuario.isValid(...Object.values(req.body))
+            const usuarioIsValid = ValidacoesUsuario.usuarioIsValid(...Object.values(req.body))
             try {
                 if (usuarioIsValid) {
                     const usuario = new UsuarioModel(...Object.values(req.body))
