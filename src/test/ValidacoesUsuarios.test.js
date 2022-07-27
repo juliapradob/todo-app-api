@@ -23,3 +23,15 @@ test("Validar se o email é válido", () => {
 test("Validar se o email é válido", () => {
     expect(ValidacoesUsuarios.validaEmail("fabio_fabio@yahoo.com")).toBe(true)
 });
+
+test("Validar se o telefone é válido", () => {
+    expect(ValidacoesUsuarios.validaTelefone("1234567")).toBe(false)
+});
+
+test("Validar se o telefone é válido", () => {
+    expect(ValidacoesUsuarios.validaTelefone("12345678")).toBe(true)
+});
+
+test("Validar se o telefone é válido", () => {
+    expect(ValidacoesUsuarios.validaTelefone("994567053")).toBe(true)
+});

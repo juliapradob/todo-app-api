@@ -24,6 +24,7 @@ class ValidacoesService {
      * @returns boolean
      */
     static validaTelefone(telefone) {
+        if (telefone.length < 8 || telefone.length > 9) return false
         const telefoneValidado = parseInt(telefone)
         return telefoneValidado == telefone
     }
