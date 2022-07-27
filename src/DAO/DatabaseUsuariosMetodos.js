@@ -78,15 +78,30 @@ class DatabaseUsuariosMetodos {
         })
     }
 
+    static async atualizarPorId(body, id) {
+        const query = `UPDATE usuarios SET (nome, email, telefone) = (?, ?, ?) WHERE id = ?`;
+
+        return new Promise((resolve, reject) => {
+            Database.run(query, [...Object.values(body), id], (e) => {
+                if(e) {
+                    console.log(e.message)
+                    reject(e.message);
+                } else {
+                    resolve("Usuário atualizado com sucesso")
+                }
+            })
+        })
+    }
+
     static async deletaUsuarioPorId(id) {
         const query = `DELETE FROM usuarios WHERE id = ?`;
 
         return new Promise((resolve, reject) => {
-            Database.get(query, id, (e, result) => {
+            Database.get(query, id, (e) => {
                 if(e) {
                     reject(e.message);
                 } else {
-                    resolve(result)
+                    resolve("Usuário deletado com sucesso")
                 }
             })
         })
