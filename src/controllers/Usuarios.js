@@ -1,6 +1,6 @@
 import Database from "../infra/Database.js"
 import UsuarioModel from "../models/UsuarioModel.js"
-import ValidacoesUsuario from "../services/ValidacoesUsuario.js"
+import ValidacoesUsuarios from "../services/ValidacoesUsuarios.js"
 import DatabaseUsuariosMetodos from "../DAO/DatabaseUsuariosMetodos.js"
 class Usuarios {
     static rotas(app) { 
@@ -23,7 +23,7 @@ class Usuarios {
         })
 
         app.post("/usuarios", async (req, res) => {
-            const usuarioIsValid = ValidacoesUsuario.usuarioIsValid(...Object.values(req.body))
+            const usuarioIsValid = ValidacoesUsuarios.usuarioIsValid(...Object.values(req.body))
             try {
                 if (usuarioIsValid) {
                     const usuario = new UsuarioModel(...Object.values(req.body))
@@ -38,7 +38,7 @@ class Usuarios {
         })
 
         app.put("/usuarios/:id", async (req, res) => {
-            const usuarioIsValid = ValidacoesUsuario.usuarioIsValid(...Object.values(req.body))
+            const usuarioIsValid = ValidacoesUsuarios.usuarioIsValid(...Object.values(req.body))
             
             try {
                 if (usuarioIsValid) {

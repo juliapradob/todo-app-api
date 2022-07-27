@@ -5,7 +5,7 @@ class ValidacoesService {
      * @returns boolean
      */
     static validaNome(nome) {
-        return nome.length >= 2
+        return nome.length >= 3
     }
 
     /**
