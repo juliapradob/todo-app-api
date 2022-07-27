@@ -43,7 +43,7 @@ class Usuarios {
             try {
                 if (usuarioIsValid) {
                     const usuario = new UsuarioModel(...Object.values(req.body))
-                    const response = await DatabaseUsuariosMetodos.atualizarPorId(req.body, req.params.id)
+                    const response = await DatabaseUsuariosMetodos.atualizarPorId(usuario, req.params.id)
                     res.status(201).json(response) 
                 }
             } catch (e) {
