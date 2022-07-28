@@ -1,11 +1,12 @@
 import express from "express";
 import * as dotenv from "dotenv";
+import cors from "cors";
 import Usuarios from "./src/controllers/Usuarios.js"
 import DatabaseUsuariosMetodos from "./src/DAO/DatabaseUsuariosMetodos.js";
 
 dotenv.config()
 
-const port = process.env.PORT || 3000 //acessa a variável de ambiente cujo nome é PORT
+const port = process.env.PORT || 3000
 const app = express()
 
 app.listen(port, () => {
@@ -14,5 +15,7 @@ app.listen(port, () => {
 })
 
 app.use(express.json())
+
+app.use(cors())
 
 Usuarios.rotas(app)
